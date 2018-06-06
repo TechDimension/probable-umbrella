@@ -1,6 +1,7 @@
 # Probable Umbrella
 
 No more getting caught in the rain wearing your summer outfit. 
+
 This weather app lets you know what to wear whatever the weather
 
 ## Getting Started
@@ -9,7 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Make sure latest [node](https://nodejs.org/en/) version is installed. 
+Make sure latest [node](https://nodejs.org/en/) version is installed.
+
 Make sure [npm](https://www.npmjs.com/) is installed on your machine.
 
 
@@ -31,5 +33,5 @@ To start the server
 npm start
 ```
 
-Then head to [localhost:3000](localhost:3000)
+Then head to [localhost:3000](localhost:3000) in your browser.
 
