@@ -1,19 +1,23 @@
 const express = require('express');
 const {geoCodeAddress} = require('./geocode/geocode');
+const {getWeather} = require('./weather/weather');
 const port = 3000;
 
 var app = express();
 
 app.get('/', (req, res) => {
   address = req.params.address;
-  geoCodeAddress("EC1V 8BY", (errMessage, results) => {
+  geoCodeAddress("EC1V 8BY", (errMessage, geoResults) => {
     if (errMessage) {
       console.log(errMessage);
-      return errMessage;
     }else {
-      console.log(results);
-      res.send(JSON.stringify(results, undefined, 2));
-      return results;
+      getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
+        results = {
+          results,
+          geoResults
+        };
+        res.send(JSON.stringify(results, undefined, 2));
+      });
     }
   });
 
@@ -21,14 +25,17 @@ app.get('/', (req, res) => {
 
 app.get('/:address', (req, res) => {
   address = req.params.address;
-  geoCodeAddress(address, (errMessage, results) => {
+  geoCodeAddress(address, (errMessage, geoResults) => {
     if (errMessage) {
       console.log(errMessage);
-      return errMessage;
     }else {
-      console.log(results);
-      res.send(JSON.stringify(results, undefined, 2));
-      return results;
+      getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
+        results = {
+          results,
+          geoResults
+        };
+        res.send(JSON.stringify(results, undefined, 2));
+      });
     }
   });
 
