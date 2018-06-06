@@ -1,11 +1,22 @@
 const express = require('express');
+const hbs = require('hbs');
+
 const {geoCodeAddress} = require('./geocode/geocode');
 const {getWeather} = require('./weather/weather');
 const port = 3000;
 
 var app = express();
 
-app.get('/', (req, res) => {
+
+
+hbs.registerPartials(__dirname + '/views/partials');
+
+app.set('view engine', 'hbs');
+
+app.use(express.static(__dirname + '/public'));
+
+
+app.get('/autoWeather', (req, res) => {
   address = req.params.address;
   geoCodeAddress("EC1V 8BY", (errMessage, geoResults) => {
     if (errMessage) {
@@ -16,14 +27,15 @@ app.get('/', (req, res) => {
           results,
           geoResults
         };
-        res.send(JSON.stringify(results, undefined, 2));
+        res.render('autoWeather.hbs', {
+          temperature:results.temperature
+        });
       });
     }
   });
-
 });
 
-app.get('/:address', (req, res) => {
+app.get('/addressWeather/:address', (req, res) => {
   address = req.params.address;
   geoCodeAddress(address, (errMessage, geoResults) => {
     if (errMessage) {
@@ -34,7 +46,9 @@ app.get('/:address', (req, res) => {
           results,
           geoResults
         };
-        res.send(JSON.stringify(results, undefined, 2));
+        res.render('addressWeather.hbs', {
+          temperature:results.results.temperature
+        });
       });
     }
   });
