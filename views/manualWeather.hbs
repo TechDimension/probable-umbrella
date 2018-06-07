@@ -2,13 +2,17 @@
 <html>
 <head>
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
   {{>header}}
 
-  <p> {{welcomeMessage}}</p>
-  <p> Some Static Text </p>
+
+  <form>
+    <input type="text" placeholder=" Enter Address " name="address"/>
+    <input type="submit" value="GO"/>
+  </form>
+  
 
   {{>footer}}
 </body>

@@ -16,45 +16,64 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/autoWeather', (req, res) => {
-  address = req.params.address;
-  geoCodeAddress("EC1V 8BY", (errMessage, geoResults) => {
-    if (errMessage) {
-      console.log(errMessage);
-    }else {
-      getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
-        results = {
-          results,
-          geoResults
-        };
-        res.render('autoWeather.hbs', {
-          temperature:results.temperature
-        });
-      });
-    }
-  });
-});
-
-app.get('/addressWeather/:address', (req, res) => {
-  address = req.params.address;
+var getAddressWeather = (address, res, view) => {
   geoCodeAddress(address, (errMessage, geoResults) => {
     if (errMessage) {
       console.log(errMessage);
     }else {
+      console.log(geoResults);
       getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
-        results = {
-          results,
-          geoResults
-        };
-        res.render('addressWeather.hbs', {
-          temperature:results.results.temperature
-        });
+        if (errMessage){
+          console.log(errMessage);
+        }else {
+          console.log(results);
+          results = {
+            results,
+            geoResults
+          };
+          res.render(view, {
+            pageTitle:`Weather for: ${results.geoResults.address}`,
+            temperature:results.results.temperature,
+            icon:results.results.icon
+          });
+        }
+        
       });
     }
   });
+};
 
+
+app.get('/autoWeather', (req, res) => {
+
+  res.render('autoWeather.hbs');
+
+});
+
+app.get('/addressWeather', (req, res) => {
+  address = req.query.address;
+  console.log(req.query.address);
+  if (address) {
+    getAddressWeather(address, res, "addressWeather.hbs");
+  }else{
+    res.render("addressWeather.hbs", {
+      pageTitle: "No address input"
+    });
+  }
+  
+});
+
+app.get('/manualWeather', (req, res) => {
+  address = req.query.address;
+  console.log(req.query.address);
+  res.render("manualWeather.hbs", {
+    pageTitle:`Manual Weather`
+  });
 });
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
 });
+
+
+

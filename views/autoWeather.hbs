@@ -2,13 +2,81 @@
 <html>
 <head>
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
   {{>header}}
+<!--   <h3> Location: {{address}} </h3>
+  <h3> Temperature: {{temperature}} </h3> -->
 
-  <p> {{welcomeMessage}}</p>
-  <p> Some Static Text </p>
+  <h3 id="location"> Press button </h3>
+
+  <div id="weather"> Weather data...</div>
+
+  <button onclick="getWeather()">My location</button>
+
+  <script>
+
+    var pos = [];
+    // geoCodeAddress("EC1V 8BY", (errMessage, geoResults) => {
+    //   if (errMessage) {
+    //     console.log(errMessage);
+    //   }else {
+    //     console.log(geoResults);
+    //     getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
+    //       console.log(results);
+    //       results = {
+    //         results,
+    //         geoResults
+    //       };
+    //       res.render('autoWeather.hbs', {
+    //         pageTitle:`Weather for your location: ${geoResults.latitude}, ${geoResults.longitude}`,
+    //         temperature:results.results.temperature
+    //       });
+    //     });
+    //   }
+    // });
+    var y = document.getElementById("weather");
+
+    var getAutoWeather = (position) => {
+
+      getLocation();
+
+       geoCodeAddress(position, (errMessage, geoResults) => {
+        if (errMessage) {
+          console.log(errMessage);
+        }else {
+          console.log(geoResults);
+          getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
+            console.log(results);
+            results = {
+              results,
+              geoResults
+            };
+            y.innerHTML = `Weather for your location: ${geoResults.latitude}, ${geoResults.longitude}`;
+            y.innerHTML.append(results.results.temperature);
+          });
+        }
+      });
+    }
+
+
+    var x = document.getElementById("location");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude; 
+        pos = [position.coords.latitude, position.coords.longitude];
+    }
+
+
+  </script>
 
   {{>footer}}
 </body>

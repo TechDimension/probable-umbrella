@@ -2,12 +2,47 @@
 <html>
 <head>
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
   {{>header}}
-  <h3> Temperature: {{temperature}} </h3>
 
+
+  <form>
+    <input type="text" placeholder=" Enter Address " name="address"/>
+    <input type="submit" value="GO"/>
+  </form>
+
+
+ 
+
+ <h2> What to Wear? </h2>
+
+ <div class="container" > 
+
+  <h3> Temperature: {{temperature}} </h3>
+  <h4> Summary: {{icon}} </h4>
+
+
+  <div id="protection"> </div>
+  <div id="top"> </div>
+  <div id="bottom"> </div>
+  <div id="shoes"> </div>
+
+ </div>
+
+<script type="text/javascript">
+
+  var protection = Document.getElementById('protection');
+  var top = Document.getElementById('top');
+  var bottom = Document.getElementById('bottom');
+  var shoes = Document.getElementById('shoes');
+
+
+
+
+
+</script>
 
   {{>footer}}
 </body>

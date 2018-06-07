@@ -1,0 +1,53 @@
+header {
+  background-color: purple;
+  color:white;
+}
+
+.pageTitle {
+  background-color:pink;
+  color:black;
+}
+
+
+
+footer {
+  position: absolute;
+  bottom:1em;
+}
+
+p {
+  color:red;
+}
+
+* {
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  text-align: center;
+  background-color:#302;
+}
+.navbar ul {
+  line-height: 2;
+}
+.navbar li {
+  display: inline-block;
+  text-align: center;
+  background-color:#505;
+  margin: 0px 10px;
+  padding: 5px 10px;
+}
+
+.navbar li a{
+  text-decoration: none;
+  color:white;
+}
+
+.navbar li:hover {
+  background-color: #80E;
+}
+
+

@@ -15,7 +15,8 @@ var getWeather = (lat,long, callback) => {
         temperature: toCelsius(current.temperature),
         apparentTemperature: toCelsius(current.apparentTemperature),
         precipProbability: current.precipProbability,
-        uvIndex: current.uvIndex
+        uvIndex: current.uvIndex,
+        icon: current.icon
       });
 
     }else {
