@@ -1,0 +1,17 @@
+header {
+  background-color: purple;
+  color:white;
+}
+
+.navbar {
+  background-color:yellow;
+  text-decoration: none;
+}
+footer {
+  position: absolute;
+  bottom:1em;
+}
+
+p {
+  color:red;
+}
