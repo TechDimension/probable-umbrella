@@ -7,43 +7,79 @@
 <body>
   {{>header}}
 
-
-  <form>
-    <input type="text" placeholder=" Enter Address " name="address"/>
-    <input type="submit" value="GO"/>
-  </form>
-
-
- 
+  <div id="address-form">
+    <form>
+      <input type="text" placeholder=" Enter Address " name="address"/>
+      <input type="submit" value="GO"/>
+    </form>
+  </div>
 
  <h2> What to Wear? </h2>
 
  <div class="container" > 
 
-  <h3> Temperature: {{temperature}} </h3>
-  <h4> Summary: {{icon}} </h4>
+  <div class="weather_s">
+    <h2> Today's Weather: {{day}} </h2>
+    <h3> Temperature: {{temperature}} </h3>
+    <h3> Precipitation: {{precipitation}}% </h3>
+    <h4> Summary: {{icon}} </h4>
+  </div>
+
+  <div class="recommended" >
+    <div id="recommended_summary" ></div>
+  </div>
 
 
-  <div id="protection"> </div>
-  <div id="top"> </div>
-  <div id="bottom"> </div>
-  <div id="shoes"> </div>
+  <div id="outfit"></div>
 
  </div>
 
-<script type="text/javascript">
+ <script type="text/javascript">
 
-  var protection = Document.getElementById('protection');
-  var top = Document.getElementById('top');
-  var bottom = Document.getElementById('bottom');
-  var shoes = Document.getElementById('shoes');
+  var addNewClothingItem = (name) => {
+    var outfit = document.getElementById("outfit");
+
+    var clothing = document.createElement("div");
+    var img = document.createElement("img");
+    img.src = `/lib/${name}`;
+    img.alt = `${name}`;
+    clothing.appendChild(img);
+
+    outfit.appendChild(clothing);
+  };
 
 
 
+  window.onload = function () {
 
+   var recommended_summary = document.getElementById('recommended_summary');
 
-</script>
+   if ({{temperature}} > 16) {
+     recommended_summary.innerHTML = "It's a nice warm day to go out in a shirt, shorts, and trainers";
+     addNewClothingItem("t-shirt.png");
+     addNewClothingItem("shorts.png");
+     addNewClothingItem("flip-flops.png");
+   }else if ({{temperature}} > 10) {
+     recommended_summary.innerHTML = "It's a bit chilly, take a jumper";
+     addNewClothingItem("hoodie.png");
+     addNewClothingItem("jeans.png");
+     addNewClothingItem("t-shirt");
+
+   }
+   if ({{precipitation}} > 40){
+    recommended_summary.innerHTML += " and an umbrella for that rain";
+
+    addNewClothingItem("umbrella.png");
+   }
+
+}
+
+ </script>
+
 
   {{>footer}}
+
+
+
 </body>
 </html>

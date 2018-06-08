@@ -1,6 +1,9 @@
 header {
   background-color: purple;
-  color:white;
+}
+
+header h1 {
+  color: yellow;
 }
 
 .pageTitle {
@@ -8,15 +11,23 @@ header {
   color:black;
 }
 
-
-
-footer {
-  position: absolute;
-  bottom:1em;
+a {
+  text-decoration: none;
 }
 
-p {
-  color:red;
+a:visited {
+  color:black;
+}
+
+footer {
+
+   position:absolute;
+   bottom:0;
+   width:100%;
+   background-color:purple;
+   color:white;
+   font-size: 1.2em;
+
 }
 
 * {
@@ -31,18 +42,24 @@ p {
   background-color:#302;
 }
 .navbar ul {
-  line-height: 2;
 }
 .navbar li {
   display: inline-block;
   text-align: center;
-  background-color:#505;
   margin: 0px 10px;
-  padding: 5px 10px;
+  height: 100%;
+
 }
 
 .navbar li a{
-  text-decoration: none;
+  color:white;
+}
+a span {
+  background-color:#505;
+  min-width: 100%;
+  height: 100%;
+  font-size: 1.5em;
+  display: inline-block;
   color:white;
 }
 
@@ -50,4 +67,82 @@ p {
   background-color: #80E;
 }
 
+.container {
+  border:2px solid black;
+  border-radius: 20px;
+  width:50vw;
+  height:50vh;
+  left:calc(50vw - 25vw);
+  position:absolute;
+  overflow: hidden;
+}
+.weather_s {
+  background-color: lightgrey;
+}
 
+.recommended {
+  margin-top: 2%;
+  font-size: 1.3em;
+}
+
+#outfit {
+  margin-top: 2%;
+  border-top:1px solid black;
+  padding: 10%;
+}
+
+#outfit div {
+  max-height: 200px;
+  height: 200px;
+  width: 200px;
+  display: inline;
+}
+
+#outfit img {
+  height:150px;
+}
+
+.button {
+  margin-top: 10%;
+}
+.button div{
+  width:100px;
+  height:100px;
+  display: inline-block;
+  margin: 0 20px;
+  border:3px solid purple;
+  font-size:1.2em;
+}
+
+.button img {
+  height:100px;
+}
+
+#address-form {
+  border: 2px solid black;
+  width:40vw;
+  margin-top: 5px;
+  margin:auto;
+}
+
+#address-form input[type=submit]{
+  background-color: #302;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  height:50px;
+}
+
+#address-form input[type=text] {
+    width: 200px;
+    height:50px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

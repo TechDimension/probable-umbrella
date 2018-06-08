@@ -10,11 +10,18 @@ var getWeather = (lat,long, callback) => {
     json: true
   }, (error, response, body) => {
     if (!error && response.statusCode === 200){
-      var current = body.currently;
+      var current = body.daily.data[0];
+      console.log(current.time);
+      var date = new Date(current.time * 1000);
+      console.log(date);
+      var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
       callback(undefined, {
-        temperature: toCelsius(current.temperature),
-        apparentTemperature: toCelsius(current.apparentTemperature),
-        precipProbability: current.precipProbability,
+        day: `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
+        temperature: toCelsius(current.temperatureHigh),
+        apparentTemperature: toCelsius(current.apparentTemperatureHigh),
+        precipProbability: current.precipProbability * 100,
         uvIndex: current.uvIndex,
         icon: current.icon
       });

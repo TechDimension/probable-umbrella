@@ -33,7 +33,9 @@ var getAddressWeather = (address, res, view) => {
           };
           res.render(view, {
             pageTitle:`Weather for: ${results.geoResults.address}`,
+            day: results.results.day,
             temperature:results.results.temperature,
+            precipitation: results.results.precipProbability,
             icon:results.results.icon
           });
         }
@@ -43,7 +45,11 @@ var getAddressWeather = (address, res, view) => {
   });
 };
 
-
+app.get('/' , (req, res) => {
+  res.render("welcome.hbs", {
+    pageTitle: "Welcome"
+  });
+});
 app.get('/autoWeather', (req, res) => {
 
   res.render('autoWeather.hbs');
