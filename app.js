@@ -19,14 +19,15 @@ app.use(express.static(__dirname + '/public'));
 var getAddressWeather = (address, res, view) => {
   geoCodeAddress(address, (errMessage, geoResults) => {
     if (errMessage) {
-      console.log(errMessage);
+      console.log("Error Message: " +errMessage);
     }else {
-      console.log(geoResults);
+      console.log("GeoResults: " + geoResults);
       getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
+        console.log("errMessage");
         if (errMessage){
-          console.log(errMessage);
+          console.log("Error Message weather: " + errMessage);
         }else {
-          console.log(results);
+          console.log("Weather Results: " + results);
           results = {
             results,
             geoResults
@@ -34,8 +35,11 @@ var getAddressWeather = (address, res, view) => {
           res.render(view, {
             pageTitle:`Weather for: ${results.geoResults.address}`,
             day: results.results.day,
-            temperature:results.results.temperature,
+            temperatureHigh:results.results.temperatureHigh,
+            temperatureLow:results.results.temperatureLow,
+            temperatureCurrent:results.results.temperatureCurrent,
             precipitation: results.results.precipProbability,
+            uvIndex:results.results.uvIndex,
             icon:results.results.icon
           });
         }
@@ -52,7 +56,15 @@ app.get('/' , (req, res) => {
 });
 app.get('/autoWeather', (req, res) => {
 
-  res.render('autoWeather.hbs');
+  address = req.query.address;
+  console.log(req.query.address);
+  if (address) {
+    getAddressWeather(address, res, "autoWeather.hbs");
+  }else{
+    res.render("autoWeather.hbs", {
+      pageTitle: "No address input"
+    });
+  }
 
 });
 

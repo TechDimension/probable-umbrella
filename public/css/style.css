@@ -71,7 +71,7 @@ a span {
   border:2px solid black;
   border-radius: 20px;
   width:50vw;
-  height:50vh;
+  /*height:70vh;*/
   left:calc(50vw - 25vw);
   position:absolute;
   overflow: hidden;
@@ -87,19 +87,25 @@ a span {
 
 #outfit {
   margin-top: 2%;
+  margin-bottom: 2%;
   border-top:1px solid black;
-  padding: 10%;
+  padding: 2%;
 }
 
 #outfit div {
-  max-height: 200px;
-  height: 200px;
-  width: 200px;
-  display: inline;
+  height: calc(8vw + 30px);
+  width: 8vw;
+  outline: 1px solid black;
+  display: inline-block;
+  font-size: 1.2em;
+  margin: 0 5px;
+  margin-bottom: 1vh;
+  color:purple;
 }
 
 #outfit img {
-  height:150px;
+  height: 8vw;
+  width: 8vw;
 }
 
 .button {
@@ -118,31 +124,37 @@ a span {
   height:100px;
 }
 
-#address-form {
+#address-form form{
   border: 2px solid black;
-  width:40vw;
-  margin-top: 5px;
-  margin:auto;
+  width:calc(30vw + 10vh + 10vh + 2px);
+  height: 10vh;
+  margin:0 auto;
+  padding:0;
 }
 
 #address-form input[type=submit]{
   background-color: #302;
-  border: none;
   color: white;
-  padding: 16px 32px;
   text-decoration: none;
-  margin: 4px 2px;
   cursor: pointer;
-  height:50px;
+  height:10vh;
+  width:10vh;
+  float:left;
+}
+#address-form img {
+  height:calc(10vh - 10px);
+  width:calc(10vh - 10px);
+  border:5px solid #302;
+  cursor:pointer;
+  background-color: black;
+  display: inline-block;
+  float:left;
 }
 
 #address-form input[type=text] {
-    width: 200px;
-    height:50px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    width: 30vw;
+    height:100%;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    float:left;
+    font-size: 1.5em;
 }

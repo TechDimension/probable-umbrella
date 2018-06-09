@@ -10,7 +10,8 @@ var getWeather = (lat,long, callback) => {
     json: true
   }, (error, response, body) => {
     if (!error && response.statusCode === 200){
-      var current = body.daily.data[0];
+      var today = body.daily.data[0];
+      var current = body.currently;
       console.log(current.time);
       var date = new Date(current.time * 1000);
       console.log(date);
@@ -19,11 +20,14 @@ var getWeather = (lat,long, callback) => {
 
       callback(undefined, {
         day: `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
-        temperature: toCelsius(current.temperatureHigh),
-        apparentTemperature: toCelsius(current.apparentTemperatureHigh),
-        precipProbability: current.precipProbability * 100,
-        uvIndex: current.uvIndex,
-        icon: current.icon
+        temperatureHigh: toCelsius(today.temperatureHigh),
+        temperatureLow: toCelsius(today.temperatureLow),
+        temperatureCurrent: toCelsius(current.temperature),
+        apparentTemperature: toCelsius(today.temperatureHigh),
+        re: toCelsius(today.apparentTemperatureHigh),
+        precipProbability: parseFloat((today.precipProbability * 100).toFixed(1)),
+        uvIndex: today.uvIndex,
+        icon: today.icon
       });
 
     }else {

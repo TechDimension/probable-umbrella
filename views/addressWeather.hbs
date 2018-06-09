@@ -3,14 +3,16 @@
 <head>
   <title>{{pageTitle}}</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="shortcut icon" href="">
 </head>
 <body>
   {{>header}}
 
   <div id="address-form">
     <form>
-      <input type="text" placeholder=" Enter Address " name="address"/>
+      <input type="text" placeholder=" Enter Address " name="address" id="address"/>
       <input type="submit" value="GO"/>
+      <img onclick="getLocation()" src="/lib/location.jpg" />
     </form>
   </div>
 
@@ -20,7 +22,12 @@
 
   <div class="weather_s">
     <h2> Today's Weather: {{day}} </h2>
-    <h3> Temperature: {{temperature}} </h3>
+    <h3> 
+      <span style="float:left;margin-left:2em"> Lowest: {{temperatureLow}} </span> 
+      <span> Current Temperature: {{temperatureCurrent}} </span>
+      <span style="float:right;margin-right:2em"> Highest: {{temperatureHigh}} </span>
+    </h3>
+    <h3> UV index: {{uvIndex}} </h3>
     <h3> Precipitation: {{precipitation}}% </h3>
     <h4> Summary: {{icon}} </h4>
   </div>
@@ -41,38 +48,106 @@
 
     var clothing = document.createElement("div");
     var img = document.createElement("img");
-    img.src = `/lib/${name}`;
+    img.src = `/lib/${name}.png`;
     img.alt = `${name}`;
     clothing.appendChild(img);
+    clothing.innerHTML += name;
 
     outfit.appendChild(clothing);
   };
 
+  var x = document.getElementById("address");
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+  function showPosition(position) {
+      x.value = parseFloat((position.coords.latitude).toFixed(4)) + 
+      ", " + parseFloat((position.coords.longitude).toFixed(4)); 
+  }
 
 
-  window.onload = function () {
+  window.onload = function()  {
 
-   var recommended_summary = document.getElementById('recommended_summary');
+   var valid = "{{icon}}";
+   if (valid !== ""){
+      var recommended_summary = document.getElementById('recommended_summary');
 
-   if ({{temperature}} > 16) {
-     recommended_summary.innerHTML = "It's a nice warm day to go out in a shirt, shorts, and trainers";
-     addNewClothingItem("t-shirt.png");
-     addNewClothingItem("shorts.png");
-     addNewClothingItem("flip-flops.png");
-   }else if ({{temperature}} > 10) {
-     recommended_summary.innerHTML = "It's a bit chilly, take a jumper";
-     addNewClothingItem("hoodie.png");
-     addNewClothingItem("jeans.png");
-     addNewClothingItem("t-shirt");
+      var tempLow = parseFloat({{temperatureLow}});
+      var tempHigh = parseFloat({{temperatureHigh}});
+      var precipitation = parseFloat({{precipitation}});
+      var uvIndex = parseFloat({{uvIndex}});
 
+
+
+      console.log(tempLow);
+      if (((tempHigh + tempLow) / 2) > 20) {
+        recommended_summary.innerHTML = "It's a nice warm day today";
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("vest-top");
+        addNewClothingItem("shorts");
+        addNewClothingItem("flip-flops");
+      }else if (((tempHigh + tempLow) / 2) > 15) {
+        recommended_summary.innerHTML = "It's quite warm, but may need a cardigan for the evening";
+        addNewClothingItem("cardigan");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("shoes");
+      }else if (((tempHigh + tempLow) / 2) > 10) {
+        recommended_summary.innerHTML = "It's a bit chilly, take a jumper";
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("shoes");
+      }else if (((tempHigh + tempLow) / 2) > 5) {
+        recommended_summary.innerHTML = "It's a quite cold, stay warm";
+
+        addNewClothingItem("jacket");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }else if (((tempHigh + tempLow) / 2) > 0) {
+        recommended_summary.innerHTML = "It's cold, be prepared";
+        addNewClothingItem("jacket");
+        addNewClothingItem("scarf");
+        addNewClothingItem("winter-hat");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }else{
+        recommended_summary.innerHTML = "It's extremely cold, be very prepared";
+        addNewClothingItem("jacket");
+        addNewClothingItem("scarf");
+        addNewClothingItem("winter-hat");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("vest-top");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }
+
+      if ((precipitation > 40) && (uvIndex > 4)) {
+       recommended_summary.innerHTML += ". You might catch a rainbow today, but first you will need an umbrella and sunglasses";
+       addNewClothingItem("umbrella");
+       addNewClothingItem("sunglasses");
+      }else{
+
+        if (precipitation > 40){
+         recommended_summary.innerHTML += " but don't forget an umbrella for the rain";
+         addNewClothingItem("umbrella");
+        }
+
+        if (uvIndex > 4){
+         recommended_summary.innerHTML += " but don't forget sunglasses for the sun";
+         addNewClothingItem("sunglasses");
+        }
+      }
+    }
    }
-   if ({{precipitation}} > 40){
-    recommended_summary.innerHTML += " and an umbrella for that rain";
 
-    addNewClothingItem("umbrella.png");
-   }
-
-}
 
  </script>
 

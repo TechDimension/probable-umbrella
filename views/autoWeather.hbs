@@ -2,82 +2,160 @@
 <html>
 <head>
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="shortcut icon" href="">
 </head>
 <body>
   {{>header}}
-<!--   <h3> Location: {{address}} </h3>
-  <h3> Temperature: {{temperature}} </h3> -->
 
-  <h3 id="location"> Press button </h3>
+  <div id="address-form">
+    <form>
+      <input type="text" placeholder=" Enter Address " name="address" id="address"/>
+      
+      <input type="submit" value="GO"/>
+      <img onclick="getLocation()" src="/lib/location.jpg" />
+    </form>
+  </div>
 
-  <div id="weather"> Weather data...</div>
+ <h2> What to Wear? </h2>
 
-  <button onclick="getWeather()">My location</button>
+ <div class="container" > 
 
-  <script>
+  <div class="weather_s">
+    <h2> Today's Weather: {{day}} </h2>
+    <h3> 
+      <span style="float:left;margin-left:2em"> Lowest: {{temperatureLow}} </span> 
+      <span> Current Temperature: {{temperatureCurrent}} </span>
+      <span style="float:right;margin-right:2em"> Highest: {{temperatureHigh}} </span>
+    </h3>
+    <h3> UV index: {{uvIndex}} </h3>
+    <h3> Precipitation: {{precipitation}}% </h3>
+    <h4> Summary: {{icon}} </h4>
+  </div>
 
-    var pos = [];
-    // geoCodeAddress("EC1V 8BY", (errMessage, geoResults) => {
-    //   if (errMessage) {
-    //     console.log(errMessage);
-    //   }else {
-    //     console.log(geoResults);
-    //     getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
-    //       console.log(results);
-    //       results = {
-    //         results,
-    //         geoResults
-    //       };
-    //       res.render('autoWeather.hbs', {
-    //         pageTitle:`Weather for your location: ${geoResults.latitude}, ${geoResults.longitude}`,
-    //         temperature:results.results.temperature
-    //       });
-    //     });
-    //   }
-    // });
-    var y = document.getElementById("weather");
+  <div class="recommended" >
+    <div id="recommended_summary" ></div>
+  </div>
 
-    var getAutoWeather = (position) => {
 
-      getLocation();
+  <div id="outfit"></div>
 
-       geoCodeAddress(position, (errMessage, geoResults) => {
-        if (errMessage) {
-          console.log(errMessage);
-        }else {
-          console.log(geoResults);
-          getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
-            console.log(results);
-            results = {
-              results,
-              geoResults
-            };
-            y.innerHTML = `Weather for your location: ${geoResults.latitude}, ${geoResults.longitude}`;
-            y.innerHTML.append(results.results.temperature);
-          });
+ </div>
+
+ <script type="text/javascript">
+
+  var addNewClothingItem = (name) => {
+    var outfit = document.getElementById("outfit");
+
+    var clothing = document.createElement("div");
+    var img = document.createElement("img");
+    img.src = `/lib/${name}.png`;
+    img.alt = `${name}`;
+    clothing.appendChild(img);
+    clothing.innerHTML += name;
+
+    outfit.appendChild(clothing);
+  };
+
+  var x = document.getElementById("address");
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+  function showPosition(position) {
+      x.value = parseFloat((position.coords.latitude).toFixed(4)) + 
+      ", " + parseFloat((position.coords.longitude).toFixed(4)); 
+  }
+
+
+  window.onload = function()  {
+
+   var valid = "{{icon}}";
+   if (valid !== ""){
+      var recommended_summary = document.getElementById('recommended_summary');
+
+      var tempLow = parseFloat({{temperatureLow}});
+      var tempHigh = parseFloat({{temperatureHigh}});
+      var precipitation = parseFloat({{precipitation}});
+      var uvIndex = parseFloat({{uvIndex}});
+
+
+
+      console.log(tempLow);
+      if (((tempHigh + tempLow) / 2) > 20) {
+        recommended_summary.innerHTML = "It's a nice warm day today";
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("vest-top");
+        addNewClothingItem("shorts");
+        addNewClothingItem("flip-flops");
+      }else if (((tempHigh + tempLow) / 2) > 15) {
+        recommended_summary.innerHTML = "It's quite warm, but may need a cardigan for the evening";
+        addNewClothingItem("cardigan");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("shoes");
+      }else if (((tempHigh + tempLow) / 2) > 10) {
+        recommended_summary.innerHTML = "It's a bit chilly, take a jumper";
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("shoes");
+      }else if (((tempHigh + tempLow) / 2) > 5) {
+        recommended_summary.innerHTML = "It's a quite cold, stay warm";
+
+        addNewClothingItem("jacket");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }else if (((tempHigh + tempLow) / 2) > 0) {
+        recommended_summary.innerHTML = "It's cold, be prepared";
+        addNewClothingItem("jacket");
+        addNewClothingItem("scarf");
+        addNewClothingItem("winter-hat");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }else{
+        recommended_summary.innerHTML = "It's extremely cold, be very prepared";
+        addNewClothingItem("jacket");
+        addNewClothingItem("scarf");
+        addNewClothingItem("winter-hat");
+        addNewClothingItem("hoodie");
+        addNewClothingItem("t-shirt");
+        addNewClothingItem("vest-top");
+        addNewClothingItem("jeans");
+        addNewClothingItem("t-shirt");
+      }
+
+      if ((precipitation > 40) && (uvIndex > 4)) {
+       recommended_summary.innerHTML += ". You might catch a rainbow today, but first you will need an umbrella and sunglasses";
+       addNewClothingItem("umbrella");
+       addNewClothingItem("sunglasses");
+      }else{
+
+        if (precipitation > 40){
+         recommended_summary.innerHTML += " but don't forget an umbrella for the rain";
+         addNewClothingItem("umbrella");
         }
-      });
-    }
 
-
-    var x = document.getElementById("location");
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+        if (uvIndex > 4){
+         recommended_summary.innerHTML += " but don't forget sunglasses for the sun";
+         addNewClothingItem("sunglasses");
         }
+      }
     }
-    function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude + 
-        "<br>Longitude: " + position.coords.longitude; 
-        pos = [position.coords.latitude, position.coords.longitude];
-    }
+   }
 
 
-  </script>
+ </script>
+
 
   {{>footer}}
+
+
+
 </body>
 </html>
