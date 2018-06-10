@@ -3,43 +3,28 @@
 <head>
   <title>{{pageTitle}}</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script type="text/javascript" src="/js/weatherRecommended.js"></script>
   <link rel="shortcut icon" href="">
 </head>
 <body>
   {{>header}}
 
-<!--   <div id="weather-form-container">
-    <form id="weather-form">
-      
 
-      <select type="text" placeholder=" Enter precipitation " name="precipitation" id="precipitation">
-        <option>  Precipitation </option>
-        <option value=70>  > 70% </option>
-        <option value=40> 40% - 70% </option>
-        <option value=20> 20% - 40% </option>
-        <option value=10> 0% - 20% </option>
-        <option value=0>  0% </option>
-      </select>
-      <select type="text" placeholder=" Enter uvIndex " name="uvIndex" id="uvIndex">
-        <option>  UV Index </option>
-        <option value=8>  >8 </option>
-        <option value=4> 4-8 </option>
-        <option value=2> 2-4 </option>
-        <option value=0> 0-2 </option>
-      </select>
-    </form>
-    <button onclick="weatherRecommended()"> Start </button>
-  </div> -->
+ 
 
- <h2> What to Wear? </h2>
+  <h2> What to Wear? </h2>
 
- <div class="container" > 
+  <div id="pageInfo"> 
+    <div>Use the sliders below to change weather settings</div>
+  </div>
 
-  <form id="weather-form" onchange="weatherRecommended()">
+  <div class="container" > 
+
+  <form id="weather-form" onchange="weatherFormUpdate()">
   <div class="weather_s">
-    <h3> <input type="range" min="-40" max="70" value="20" id="temperature"/> Temperature: <span id="temperatureInfo"> </span> </h3>
-    <h3> <input type="range" min="0" max="100" value="0" id="precipitation"/> Precipitation: <span id="precipitationInfo"> Not set </span> </h3>
-    <h3> <input type="range" min="0" max="15" value="20" id="uvIndex"/> UV index: <span id="uvIndexInfo"> Not set </span>  </h3>
+    <div> Temperature: <span id="temperatureInfo">  Not set </span><input type="range" min="-40" max="70" value=15 id="temperature"/>   </div>
+    <div>  Precipitation: <span id="precipitationInfo"> Not set </span> <input type="range" min="0" max="100" value=0 id="precipitation"/> </div>
+    <div>  UV index: <span id="uvIndexInfo"> Not set </span> <input type="range" min="0" max="15" value=0 id="uvIndex"/> </div>
   </div>
   </form>
   <div class="recommended" >
@@ -49,125 +34,26 @@
 
   <div id="outfit"></div>
 
- </div>
+  </div>
 
- <script type="text/javascript">
+  <script type="text/javascript">
 
-  var addNewClothingItem = (name) => {
-    var outfit = document.getElementById("outfit");
+  var weatherFormUpdate = () => {
+    var weatherForm = document.getElementById('weather-form');
+    var temperature = weatherForm.temperature.value;
+    var precipitation = weatherForm.precipitation.value;
+    var uvIndex = weatherForm.uvIndex.value;
 
-    var clothing = document.createElement("div");
-    var img = document.createElement("img");
-    img.src = `/lib/${name}.png`;
-    img.alt = `${name}`;
-    clothing.appendChild(img);
-    clothing.innerHTML += name;
+    document.getElementById('temperatureInfo').innerHTML = temperature + "&#176 degrees";
+    document.getElementById('precipitationInfo').innerHTML = precipitation + "%";
+    document.getElementById('uvIndexInfo').innerHTML = uvIndex;
 
-    outfit.appendChild(clothing);
+    weatherRecommended(temperature, precipitation, uvIndex);
   };
-
-  var clothingReset = () => {
-    var outfit = document.getElementById("outfit");
-    outfit.innerHTML = "";
-  };
-
-    var x = document.getElementById("address");
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-    function showPosition(position) {
-        x.value = parseFloat((position.coords.latitude).toFixed(4)) + 
-        ", " + parseFloat((position.coords.longitude).toFixed(4)); 
-    }
-
-
-  weatherRecommended = function()  {
-
-      clothingReset();
-
-      var recommended_summary = document.getElementById('recommended_summary');
-
-      var weatherForm = document.getElementById('weather-form');
-      var temperature = weatherForm.temperature.value;
-      var precipitation = weatherForm.precipitation.value;
-      var uvIndex = weatherForm.uvIndex.value;;
-
-      document.getElementById('temperatureInfo').innerHTML = temperature;
-      document.getElementById('precipitationInfo').innerHTML = precipitation + "%";
-      document.getElementById('uvIndexInfo').innerHTML = uvIndex;
-      
-
-      console.log(temperature);
-      if (temperature > 20) {
-        recommended_summary.innerHTML = "It's a nice warm day today";
-        addNewClothingItem("t-shirt");
-        addNewClothingItem("vest-top");
-        addNewClothingItem("shorts");
-        addNewClothingItem("flip-flops");
-      }else if (temperature > 15) {
-        recommended_summary.innerHTML = "It's quite warm, but may need a cardigan for the evening";
-        addNewClothingItem("cardigan");
-        addNewClothingItem("jeans");
-        addNewClothingItem("t-shirt");
-        addNewClothingItem("shoes");
-      }else if (temperature > 10) {
-        recommended_summary.innerHTML = "It's a bit chilly, take a jumper";
-        addNewClothingItem("hoodie");
-        addNewClothingItem("jeans");
-        addNewClothingItem("t-shirt");
-        addNewClothingItem("shoes");
-      }else if (temperature > 5) {
-        recommended_summary.innerHTML = "It's a quite cold, stay warm";
-
-        addNewClothingItem("jacket");
-        addNewClothingItem("hoodie");
-        addNewClothingItem("jeans");
-        addNewClothingItem("t-shirt");
-      }else if (temperature > 0) {
-        recommended_summary.innerHTML = "It's cold, be prepared";
-        addNewClothingItem("jacket");
-        addNewClothingItem("scarf");
-        addNewClothingItem("winter-hat");
-        addNewClothingItem("hoodie");
-        addNewClothingItem("jeans");
-        addNewClothingItem("t-shirt");
-      }else{
-        recommended_summary.innerHTML = "It's extremely cold, be very prepared";
-        addNewClothingItem("jacket");
-        addNewClothingItem("scarf");
-        addNewClothingItem("winter-hat");
-        addNewClothingItem("hoodie");
-        addNewClothingItem("t-shirt");
-        addNewClothingItem("vest-top");
-        addNewClothingItem("jeans");
-        addNewClothingItem("t-shirt");
-      }
-
-      if ((precipitation > 40) && (uvIndex > 4)) {
-       recommended_summary.innerHTML += ". You might catch a rainbow today, but first you will need an umbrella and sunglasses";
-       addNewClothingItem("umbrella");
-       addNewClothingItem("sunglasses");
-      }else{
-
-        if (precipitation > 40){
-         recommended_summary.innerHTML += " but don't forget an umbrella for the rain";
-         addNewClothingItem("umbrella");
-        }
-
-        if (uvIndex > 4){
-         recommended_summary.innerHTML += " but don't forget sunglasses for the sun";
-         addNewClothingItem("sunglasses");
-        }
-      }
-    }
+  
 
 
  </script>
-
 
   {{>footer}}
 

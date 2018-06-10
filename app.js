@@ -21,19 +21,17 @@ var getAddressWeather = (address, res, view) => {
     if (errMessage) {
       console.log("Error Message: " +errMessage);
     }else {
-      console.log("GeoResults: " + geoResults);
       getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
         console.log("errMessage");
         if (errMessage){
           console.log("Error Message weather: " + errMessage);
         }else {
-          console.log("Weather Results: " + results);
           results = {
             results,
             geoResults
           };
           res.render(view, {
-            pageTitle:`Weather for: ${results.geoResults.address}`,
+            pageTitle:`What to wear in: ${results.geoResults.address}`,
             day: results.results.day,
             temperatureHigh:results.results.temperatureHigh,
             temperatureLow:results.results.temperatureLow,
@@ -54,19 +52,7 @@ app.get('/' , (req, res) => {
     pageTitle: "Welcome"
   });
 });
-app.get('/autoWeather', (req, res) => {
 
-  address = req.query.address;
-  console.log(req.query.address);
-  if (address) {
-    getAddressWeather(address, res, "autoWeather.hbs");
-  }else{
-    res.render("autoWeather.hbs", {
-      pageTitle: "No address input"
-    });
-  }
-
-});
 
 app.get('/addressWeather', (req, res) => {
   address = req.query.address;
