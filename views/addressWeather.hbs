@@ -13,16 +13,14 @@
   <div id="address-form">
     <form>
       <input type="text" placeholder=" Enter Address " name="address" id="address"/>
-      <input type="submit" value="GO"/>
+      <input type="submit" value="Go"/>
       <img onclick="getLocation()" src="/lib/location.jpg" />
     </form>
   </div>
 
- 
-
  <div class="container" > 
 
-  <div class="weather_s">
+  <div class="weather-summary">
     <h2> Today's Weather: {{day}} </h2>
     <h3> 
       <span style="float:left;margin-left:2em"> Lowest: {{temperatureLow}} </span> 
@@ -31,7 +29,7 @@
     </h3>
     <h3> UV index: {{uvIndex}} </h3>
     <h3> Precipitation: {{precipitation}}% </h3>
-    <h4> Summary: {{icon}} </h4>
+    <h3> Summary: {{icon}} </h3>
   </div>
 
   <div class="recommended" >
@@ -44,33 +42,6 @@
  </div>
 
  <script type="text/javascript">
-
-  var addNewClothingItem = (name) => {
-    var outfit = document.getElementById("outfit");
-
-    var clothing = document.createElement("div");
-    var img = document.createElement("img");
-    img.src = `/lib/${name}.png`;
-    img.alt = `${name}`;
-    clothing.appendChild(img);
-    clothing.innerHTML += name;
-
-    outfit.appendChild(clothing);
-  };
-
-  var x = document.getElementById("address");
-  function getLocation() {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-  }
-  function showPosition(position) {
-      x.value = parseFloat((position.coords.latitude).toFixed(4)) + 
-      ", " + parseFloat((position.coords.longitude).toFixed(4)); 
-  }
-
 
   window.onload = function()  {
 

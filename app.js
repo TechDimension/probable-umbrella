@@ -7,8 +7,6 @@ const port = 3000;
 
 var app = express();
 
-
-
 hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
@@ -22,7 +20,6 @@ var getAddressWeather = (address, res, view) => {
       console.log("Error Message: " +errMessage);
     }else {
       getWeather(geoResults.latitude, geoResults.longitude, (errMessage, results) => {
-        console.log("errMessage");
         if (errMessage){
           console.log("Error Message weather: " + errMessage);
         }else {
@@ -53,10 +50,8 @@ app.get('/' , (req, res) => {
   });
 });
 
-
 app.get('/addressWeather', (req, res) => {
   address = req.query.address;
-  console.log(req.query.address);
   if (address) {
     getAddressWeather(address, res, "addressWeather.hbs");
   }else{
@@ -64,12 +59,10 @@ app.get('/addressWeather', (req, res) => {
       pageTitle: "No address input"
     });
   }
-  
 });
 
 app.get('/manualWeather', (req, res) => {
   address = req.query.address;
-  console.log(req.query.address);
   res.render("manualWeather.hbs", {
     pageTitle:`Manual Weather`
   });

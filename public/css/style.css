@@ -1,3 +1,9 @@
+* {
+  text-align: center;
+  margin: 0; 
+  padding: 0;
+}
+
 header {
   background-color: purple;
 }
@@ -30,12 +36,6 @@ footer {
 
 }
 
-* {
-  text-align: center;
-  margin: 0; 
-  padding: 0;
-}
-
 .navbar {
   width: 100%;
   text-align: center;
@@ -45,7 +45,6 @@ footer {
 }
 .navbar li {
   display: inline-block;
-  text-align: center;
   margin: 0px 10px;
   height: 100%;
 
@@ -77,9 +76,13 @@ a span {
   position:absolute;
   overflow-y: auto;
 }
-.weather_s {
+.weather-summary {
   background-color: lightgrey;
   font-size: 1.3em;
+}
+
+.weather-summary span{
+  font-weight: bold;
 }
 
 .recommended {
@@ -114,16 +117,16 @@ a span {
   margin-top: 10%;
 }
 .button div{
-  width:100px;
-  height:100px;
+  width:22vh;
+  height:calc(22vh + 30px);
   display: inline-block;
-  margin: 0 20px;
+  margin: 1vw;
   border:3px solid purple;
   font-size:1.2em;
 }
 
 .button img {
-  height:100px;
+  width:100%;
 }
 
 #address-form form{

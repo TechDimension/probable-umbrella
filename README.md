@@ -6,7 +6,7 @@ This weather app lets you know what to wear whatever the weather
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
 
@@ -35,3 +35,7 @@ npm start
 
 Then head to [localhost:3000](localhost:3000) in your browser.
 
+Press the "Enter Address" button to get a recommended outfit to wear depending on entered location.
+** Press the Location pin button to get your location.
+
+Press the "Enter Weather" button to manually set the weather settings to get recommended outfits.

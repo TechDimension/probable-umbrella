@@ -12,9 +12,7 @@ var getWeather = (lat,long, callback) => {
     if (!error && response.statusCode === 200){
       var today = body.daily.data[0];
       var current = body.currently;
-      console.log(current.time);
       var date = new Date(current.time * 1000);
-      console.log(date);
       var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
       var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
