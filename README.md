@@ -4,6 +4,10 @@ No more getting caught in the rain wearing your summer outfit.
 
 This weather app lets you know what to wear whatever the weather
 
+## TOOD
+* Refactor
+* Possibly, migrate to react
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
