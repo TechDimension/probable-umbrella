@@ -3,7 +3,9 @@ const hbs = require('hbs');
 
 const {geoCodeAddress} = require('./geocode/geocode');
 const {getWeather} = require('./weather/weather');
-const port = 3000;
+require('dotenv').config();
+
+const port = process.env.PORT | 3000;
 
 var app = express();
 
