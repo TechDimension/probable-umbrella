@@ -1,0 +1,7 @@
+.clothing-section {
+  width: 100%;
+  position:relative;
+  border-radius: 3px;
+  background-image: linear-gradient(rgba(112, 99, 99, 0.918), white);
+  height: 80vh;
+}
