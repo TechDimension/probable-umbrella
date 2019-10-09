@@ -6,7 +6,7 @@ var toCelsius = (temperature) => {
 
 var getWeather = (lat,long, callback) => {
   request({
-    url: `https://api.darksky.net/forecast/${DARKSKY_API_KEY}/${lat},${long}`,
+    url: `https://api.darksky.net/forecast/${process.env.DARKSKY_API_KEY}/${lat},${long}`,
     json: true
   }, (error, response, body) => {
     if (!error && response.statusCode === 200){
