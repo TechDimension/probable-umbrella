@@ -4,15 +4,19 @@ import Header from '../header'
 
 const Weather = (props) => {
   return (
-    <div className="container">
-      <Header siteTitle={props.siteTitle}/>
+    <div className={`container ${props.display}`} >
       <div className="weatherContainer">
       <div className="address">
-        Showing Results for: {props.address}
+        {props.address}
       </div>
     
     </div>
+       <div className="button" onClick={()=> props.setAddress('')}>
+         Again 
+        </div> 
     </div>
+
+
   )
 }
 
