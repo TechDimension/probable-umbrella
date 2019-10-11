@@ -27,7 +27,11 @@ const IndexPage = () => {
       <SEO title="Home" />
 
       <Landing siteTitle={data.site.siteMetadata.title} address={setAddress} opacity={address? 0: 1} />
-      <Weather setAddress={setAddress} address={address} display={address? '':'hidden'} />
+      <Weather 
+        setAddress={setAddress}
+        address={address} 
+        display={address? '':'hidden'} 
+      />
 
     </Layout>
   )

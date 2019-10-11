@@ -6,12 +6,10 @@ import './landing.css';
 const Landing = (props) => {
 
   const [address, setAddress] = useState("");
-  // const [opacity, setOpacity] = useState(1);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.address(address);
-    // setOpacity(0);
   }
 
     return ( 
