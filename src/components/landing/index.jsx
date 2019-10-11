@@ -6,14 +6,16 @@ import './landing.css';
 const Landing = (props) => {
 
   const [address, setAddress] = useState("");
+  const [opacity, setOpacity] = useState(1);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`submitting address: ${address}`);
+    setOpacity(0);
   }
 
     return ( 
-    <div className="landing"> 
+    <div className="landing" style={{opacity}} address={address}> 
+     
       <form onSubmit={handleSubmit}>
         <label for="location"/>
         <input type="text" 
