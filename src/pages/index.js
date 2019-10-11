@@ -2,7 +2,6 @@ import React from "react"
 
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
-import ClothingSection from "../components/clothingSection"
 import Landing from '../components/landing'
 import SEO from "../components/seo"
 
@@ -22,9 +21,6 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" />
         <Landing siteTitle={data.site.siteMetadata.title} />
-      {/* <ClothingSection>
-        
-      </ClothingSection> */}
     </Layout>
   )
 }
