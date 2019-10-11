@@ -1,14 +1,21 @@
 .weatherContainer {
   background:white;
-  box-shadow: 2px 2px 2px 2px lightgrey;
+  box-shadow: 0px 0px 1px 1px lightgrey;
   overflow: hidden;
   height: 100%;
+  padding: 15px;
+  border-radius: 5px;
+}
+.weatherContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 2px 2px lightgray;
 }
 
 .weatherContainer .address {
   color:black;
   font-size: 1.8em;
   text-align: center;
+  height: 2em;
 }
 
 .container {
@@ -19,5 +26,34 @@
   width: 50%;
   height:50%;
   box-sizing: border-box;
+  transition: opacity 0.8s;
+}
 
+.hidden{
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.button {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  padding-top: 0.35em;
+  background: linear-gradient(90deg, rgba(255,148,1,1) 0%, rgba(255,241,0,1) 100%); 
+  border: none;
+  color: white;
+  box-sizing: border-box;
+  margin-top: 15px;
+  border-radius: 5px;
+  white-space: normal;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px rgb(196, 195, 195);
 }

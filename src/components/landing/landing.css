@@ -32,6 +32,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 2px 2px rgb(196, 195, 195);
+  cursor: pointer;
 }
 
 input[type="button"] {
@@ -53,6 +54,7 @@ input[type="button"] {
 input[type="button"]:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 2px 2px rgb(196, 195, 195);
+  cursor: pointer;
 }
 .landing {
   position: absolute;
