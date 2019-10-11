@@ -1,22 +1,31 @@
-import React from 'react';
+import  React, { useState} from 'react';
 
 import Header from '../header';
 import './landing.css';
 
-class Landing extends React.Component {
-  render() {
+const Landing = (props) => {
+
+  const [address, setAddress] = useState("");
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    alert(`submitting address: ${address}`);
+  }
+
     return ( 
     <div className="landing"> 
-      <Header siteTitle={this.props.siteTitle}/>
-      <form>
+      <Header siteTitle={props.siteTitle}/>
+      <form onSubmit={handleSubmit}>
         <label for="location"/>
-        <input type="text" id="location" placeholder="Where to Wear"/>
+        <input type="text" 
+          id="location"
+          placeholder="Where to Wear"
+          onChange={(event) => setAddress(event.target.value)}/>
         <input type="submit" value="What do I wear" />
         <input type="button" value="Use my location" />
       </form>
     </div>
     )
-  }
   
 }
 
