@@ -16,7 +16,6 @@ const Landing = (props) => {
     <div className="landing" style={{opacity:props.opacity}} > 
      
       <form onSubmit={handleSubmit}>
-        <label for="location"/>
         <input type="text" 
           id="location"
           placeholder="Where to Wear"
