@@ -11,23 +11,43 @@ var geoCodeAddress = (address) => {
     }
   })
   .then(body => {
-    console.log(body)
-    if (body.statusText === "ZERO_RESULTS") {
-      return "No Results"
-    }
     if (body.status === 200) {
-        console.log(body)
       return {
         address:body.data.results[0].formatted_address,
         latitude: body.data.results[0].geometry.location.lat,
         longitude: body.data.results[0].geometry.location.lng
-      }
+      };
     }
+    return "No Results";
   })
   .catch(() => {
-    return ("Unable to connect to Google servers.")
-  })
+      return ("Unable to connect to Google servers.");
+  });
 
 };
 
-module.exports = { geoCodeAddress }; 
+var geoCodeAddressFromLatLong = (lat, long) => {
+
+  return axios({
+    url: `https://maps.googleapis.com/maps/api/geocode/json`,
+    params: {
+      key: `AIzaSyCATKk5XrFjpxPNmvPdN5pm20UMTlFg-DE`,
+      address: lat + ',' + long
+    }
+  })
+    .then(body => {
+      if (body.status === 200) {
+        return {
+          address:body.data.results[0].formatted_address,
+          latitude: body.data.results[0].geometry.location.lat,
+          longitude: body.data.results[0].geometry.location.lng
+        };
+      }
+      return "No Results";
+    })
+    .catch(() => {
+      return ("Unable to connect to Google servers.");
+    });
+
+}
+module.exports = { geoCodeAddress, geoCodeAddressFromLatLong };

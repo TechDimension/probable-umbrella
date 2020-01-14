@@ -9,6 +9,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const [address, setAddress] = useState('')
+    const [coords, setCoords] = useState('')
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -26,10 +27,11 @@ const IndexPage = () => {
       <Header siteTitle={data.site.siteMetadata.title}/>
       <SEO title="Home" />
 
-      <Landing siteTitle={data.site.siteMetadata.title} address={setAddress} opacity={address? 0: 1} />
+      <Landing siteTitle={data.site.siteMetadata.title} setAddress={setAddress} opacity={address? 0: 1} />
       <Weather 
         setAddress={setAddress}
         address={address} 
+        coords={coords} 
         display={address? '':'hidden'} 
       />
 

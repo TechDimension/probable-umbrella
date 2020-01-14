@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios');
 
 var getWeather = (lat, long) => {
   return axios({
@@ -9,8 +9,6 @@ var getWeather = (lat, long) => {
   .then(({data}) => {
     var today = data.daily.data[0];
     var current = data.currently;
-    console.log('ddd' + JSON.stringify(today,undefined, 2))
-    console.log('ddd' + JSON.stringify(current,undefined, 2))
     var date = new Date(current.time * 1000);
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -19,21 +17,21 @@ var getWeather = (lat, long) => {
       day: `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
       temperatureHigh: toCelsius(today.temperatureHigh),
       temperatureLow: toCelsius(today.temperatureLow),
-      temperatureCurrent: toCelsius(current.temperature),
+      temperature: toCelsius(current.temperature),
       apparentTemperature: toCelsius(today.temperatureHigh),
       re: toCelsius(today.apparentTemperatureHigh),
-      precipProbability: parseFloat((today.precipProbability * 100).toFixed(1)),
+      precipitation: parseFloat((today.precipProbability * 100).toFixed(1)),
       uvIndex: today.uvIndex,
       icon: today.icon
-    }
+    };
   })
   .catch(() => {
-    return "Unable to fetch weather."
-  })
+      return "Unable to fetch weather.";
+  });
 }
 
 const toCelsius = (temperature) => {
   return parseFloat(((temperature - 32) * (5/9)).toFixed(1));
 };
 
-module.exports = { getWeather }
+module.exports = { getWeather };

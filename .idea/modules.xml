@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../matthewcm.github.io/.idea/freelancer-theme.iml" filepath="$PROJECT_DIR$/../matthewcm.github.io/.idea/freelancer-theme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CMS-gatsby-template/.idea/gatsby-starter-contentstack.iml" filepath="$PROJECT_DIR$/../CMS-gatsby-template/.idea/gatsby-starter-contentstack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../matthewcm.github.io/.idea/matthewcm.github.io.iml" filepath="$PROJECT_DIR$/../matthewcm.github.io/.idea/matthewcm.github.io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/probable-umbrella.iml" filepath="$PROJECT_DIR$/.idea/probable-umbrella.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/projects.iml" filepath="$PROJECT_DIR$/../.idea/projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-udemy/.idea/react-udemy.iml" filepath="$PROJECT_DIR$/../react-udemy/.idea/react-udemy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../routing--assignment-problem/.idea/routing--assignment-problem.iml" filepath="$PROJECT_DIR$/../routing--assignment-problem/.idea/routing--assignment-problem.iml" />
+    </modules>
+  </component>
+</project>
