@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 import { useStaticQuery, graphql } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../Layout/layout"
 import Weather from '../components/Weather'
 import Header from '../components/header'
 import Landing from '../components/landing'
@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const [address, setAddress] = useState('')
-    const [coords, setCoords] = useState('')
+    const [coords] = useState('')
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {

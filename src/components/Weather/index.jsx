@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 import './weather.scss';
-import Header from '../header';
 import { geoCodeAddress } from '../../api/geocode';
 import { getWeather } from '../../api/weather';
 import ClothingSection from '../ClothingSection';

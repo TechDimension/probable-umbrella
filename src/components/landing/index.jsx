@@ -1,8 +1,6 @@
 import  React, { useState} from 'react';
 import {geoCodeAddressFromLatLong} from './../../api/geocode';
 
-import Header from '../header';
-
 import './landing.css';
 
 const Landing = (props) => {
