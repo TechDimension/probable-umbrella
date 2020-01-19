@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../Layout/layout"
 import Weather from '../components/Weather'
-import Header from '../components/header'
+import Header from '../components/Header/Header'
 import Landing from '../components/landing'
 import SEO from "../components/seo"
 

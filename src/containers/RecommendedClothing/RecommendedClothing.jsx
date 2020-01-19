@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from "react"
+import BodyPart from '../../components/BodyPart/BodyPart'
 import styles from './recommendedClothing.module.scss'
+import { calculateClothes } from "../../helpers/clothing"
 
-const recommendedClothing = () => {
+const recommendedClothing = (props) => {
   return (
     <div className={styles.RecommendedClothing}>
         <div className={styles.Header}>
@@ -9,86 +11,12 @@ const recommendedClothing = () => {
         </div>
       <div className={styles.ClothingBuilder}>
 
-      <div className={styles.BodyPart}>
-        <div className={styles.Icon}>
+      <BodyPart
+        name={'Head'}
+        icon={'tShirt'}
+        clothingItems={props.clothes}
 
-        </div>
-        <div className={styles.ClothingItem}>
-          Hat
-        </div>
-
-        <div className={styles.ClothingItem}>
-          Hat
-        </div>
-        <div className={styles.ClothingItem}>
-          Hat
-        </div>
-      </div>
-
-        <div className={styles.BodyPart}>
-          <div className={styles.Icon}>
-
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-        </div>
-        <div className={styles.BodyPart}>
-          <div className={styles.Icon}>
-
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-        </div>
-        <div className={styles.BodyPart}>
-          <div className={styles.Icon}>
-
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-        </div>
-        <div className={styles.BodyPart}>
-          <div className={styles.Icon}>
-
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-          <div className={styles.ClothingItem}>
-            Hat
-          </div>
-
-        </div>
+      />
 
       </div>
 

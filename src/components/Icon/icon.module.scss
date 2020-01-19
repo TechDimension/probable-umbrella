@@ -1,0 +1,24 @@
+.Icon {
+  width: 7rem;
+  height: 7rem;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .Image{
+    margin-bottom: 0.5rem;
+  }
+
+
+  .Description {
+    border-top: 3px solid #00ca00;
+  }
+
+}
+

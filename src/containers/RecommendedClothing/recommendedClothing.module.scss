@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: gray;
+    color: white;
     min-width: 0;
     margin-bottom: 0.5rem;
 
@@ -33,24 +33,9 @@
     padding: 2rem;
     background: rgba(211, 190, 90, 0.6);
 
-    .BodyPart {
-      display: flex;
-      margin-bottom: 2rem;
 
-      .ClothingItem {
-        margin-right: 1rem;
-      }
-
-    }
 
   }
 
 }
 
-.Icon {
-  width: 7rem;
-  height: 7rem;
-  background-color: white;
-  border-radius: 10px;
-
-}

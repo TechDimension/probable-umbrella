@@ -1,25 +1,11 @@
-import React, {useState, useEffect} from "react"
+import React from 'react'
 import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
-import './clothingSection.css'
-import {calculateClothes} from '../../helpers/clothing'
+import styles from './icon.module.scss'
 
-
-const ClothingSection = (props) => {
-  const [ clothingState, setClothingState] = useState(null);
-
-    const {temperature, precipitation, uvIndex} = props;
-
-
-
-  useEffect(() => {
-    const newClothingState = calculateClothes({temperature,precipitation,uvIndex});
-    setClothingState(newClothingState);
-  },[temperature, precipitation, uvIndex]);
-
-
+const Icon = (props) => {
   const data = useStaticQuery(graphql`
-      query ClothesQuery {
+      query IconQuery {
           boots: file(relativePath : { eq: "clothes/boots.PNG"}) {
               relativePath
               childImageSharp {
@@ -118,36 +104,22 @@ const ClothingSection = (props) => {
           }
       }
   `)
-
   return (
-    <div className="clothing-section">
-      {clothingState ?
-        <div>
-          <i className="description">
-            {clothingState.description}
-          </i>
-          <div>
-            Temperature: {props.temperature}
-          </div>
-          <div className="clothes-list">
-            {clothingState.clothes.map((cloth,key) =>
-              <div key={key}>
-                  {data[cloth] ?
-                <Img
-                    fluid={data[cloth].childImageSharp.fluid}
-                    alt={"Clothing"}
-                    className={"ClothingItem"}
-                />: <h3> {cloth} Image not ready yet </h3>
-                  }
-              </div>
-            )}
-          </div>
-        </div> :null}
+
+    <div className={styles.Icon}>
+      <Img
+        className={styles.Image}
+        fluid={data[props.src].childImageSharp.fluid}
+        alt={""}/>
+      <span className={styles.Description}>
+        {props.name}
+      </span>
+
+      {props.children}
 
     </div>
-  );
-};
+  )
+}
 
 
-
-export default ClothingSection;
+export default Icon
