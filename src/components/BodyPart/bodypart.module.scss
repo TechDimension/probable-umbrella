@@ -1,0 +1,24 @@
+  .BodyPart {
+    display: flex;
+    margin-top: 2rem;
+
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+
+
+    .ClothingItem {
+      margin-left: 1rem;
+
+      &:nth-child(1) {
+        margin-left: 3rem;
+      }
+
+    }
+
+  }
+  .Icon {
+    width: 7rem;
+    height: 7rem;
+  }

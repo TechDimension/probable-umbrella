@@ -1,0 +1,51 @@
+.Weather {
+  width: 100%;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+    .Header {
+      background: rgba(21, 52, 76, 0.74);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      min-width: 0;
+
+      & > h1 {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+    }
+
+    .Information {
+      background: rgba(21, 52, 76, 0.74);
+
+
+    .Details {
+      padding: 0 2rem 2rem;
+      font-weight: bold;
+
+      p {
+        margin-top: 0.5rem ;
+
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+
+
+    }
+
+    .Graph {
+
+    }
+    }
+
+  }

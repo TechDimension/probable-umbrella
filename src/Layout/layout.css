@@ -1,0 +1,14 @@
+html {
+  font-family: sans-serif;
+  background-image: linear-gradient(rgba(252, 252, 255, 0.8), rgb(255, 255, 255)),url(../images/rain.jpg);
+  min-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

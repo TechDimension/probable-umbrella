@@ -1,0 +1,60 @@
+.Icon {
+  //background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Fira Code Medium", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &.Body {
+    background-color: rgba(255, 204, 0, 0.71);
+    font-weight: 700;
+    font-size: 0.9rem;
+    //padding: 1rem;
+    .Description {
+      color: black;
+      border-top: 4px solid rgb(249, 255, 249);
+      font-weight: 700;
+    }
+  }
+  &.Weather{
+    margin: 0 auto;
+    padding: 2rem;
+    width: 60%;
+    color:white;
+    .Description {
+      border-top: 3px solid #fc0;
+      font-weight: 700;
+    }
+    .Image{
+      margin-bottom: 0.5rem;
+    }
+  }
+  &.Clothing{
+    background-color: rgba(255, 255, 255, 0.57);
+    color:black;
+  }
+
+  .Image{
+    margin-bottom: 0.5rem;
+
+
+    img {
+      width: auto;
+      height:auto;
+    }
+  }
+
+
+  .Description {
+    border-top: 3px solid #00ca00;
+    font-weight: 500;
+  }
+
+}
+
