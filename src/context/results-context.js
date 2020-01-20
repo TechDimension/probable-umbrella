@@ -62,8 +62,3 @@ export default props => {
     </ResultsContext.Provider>
   );
 }
-// getWeather(geocode.latitude, geocode.longitude)
-//   .then(weather => {
-//     setWeather(weather);
-//   }).catch(() => {
-// });

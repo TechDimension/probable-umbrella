@@ -1,9 +1,9 @@
-const axios = require('axios');
+const axios = require('axios')
 
 const getWeather = (lat, long) => {
   return axios({
     method: 'get',
-    url: `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/3f166f1086c5a25d93bf69d2e5cb12ac/${lat},${long}`
+    url: `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.GATSBY_DARKSKY_API_KEY}/${lat},${long}`
 
   })
   .then(({data}) => {

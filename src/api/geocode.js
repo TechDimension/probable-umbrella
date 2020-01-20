@@ -1,4 +1,4 @@
-const axios =  require('axios');
+const axios =  require('axios')
 
 var geoCodeAddress = (address) => {
   if (address.gps) {
@@ -10,7 +10,7 @@ var geoCodeAddress = (address) => {
   return axios({
     url: `https://maps.googleapis.com/maps/api/geocode/json`,
     params: {
-      key: `AIzaSyCATKk5XrFjpxPNmvPdN5pm20UMTlFg-DE`,
+      key: process.env.GATSBY_GEOCODE_API_KEY,
       address: address
     }
   })
@@ -30,28 +30,4 @@ var geoCodeAddress = (address) => {
 
 };
 
-var geoCodeAddressFromLatLong = (lat, long) => {
-
-  return axios({
-    url: `https://maps.googleapis.com/maps/api/geocode/json`,
-    params: {
-      key: `AIzaSyCATKk5XrFjpxPNmvPdN5pm20UMTlFg-DE`,
-      address: lat + ',' + long
-    }
-  })
-    .then(body => {
-      if (body.status === 200) {
-        return {
-          address:body.data.results[0].formatted_address,
-          latitude: body.data.results[0].geometry.location.lat,
-          longitude: body.data.results[0].geometry.location.lng
-        };
-      }
-      throw "No Results";
-    })
-    .catch(() => {
-      throw ("Unable to connect to Google servers.");
-    });
-
-}
-module.exports = { geoCodeAddress, geoCodeAddressFromLatLong };
+module.exports = { geoCodeAddress};
