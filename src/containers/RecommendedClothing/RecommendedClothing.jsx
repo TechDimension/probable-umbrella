@@ -7,7 +7,6 @@ import {ResultsContext} from '../../context/results-context'
 
 const RecommendedClothing = () => {
   const {clothes} = useContext(ResultsContext)
-  console.log(clothes)
 
   return (
     <div className={styles.RecommendedClothing}>
@@ -21,7 +20,7 @@ const RecommendedClothing = () => {
           <BodyPart
             key={key}
             name={key}
-            icon={'tShirt'}
+            icon={key}
             clothingItems={clothes[key]}
           />
         ))}

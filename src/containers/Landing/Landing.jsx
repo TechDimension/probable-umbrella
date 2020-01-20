@@ -18,7 +18,6 @@ const Landing = (props) => {
       navigator.geolocation.getCurrentPosition((async ({coords}) => {
         const {latitude, longitude} = coords
         const currentPosition = {latitude, longitude, gps:true}
-        console.log(currentPosition)
         handleResult(currentPosition);
       }), (error) => console.log(error.message));
     }

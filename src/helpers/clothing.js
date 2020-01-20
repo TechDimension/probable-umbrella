@@ -16,10 +16,6 @@ const Feet = 'feet'
 const calculateClothes = ({temperature, precipitation, uvIndex}) => {
     clothes = {}
 
-    console.log(temperature)
-    console.log(precipitation)
-    console.log(uvIndex)
-
     if (temperature >= 40) {
         addClothingItem(Torso, "vestTop");
         addClothingItem(Legs, "shorts",);
@@ -89,8 +85,6 @@ const calculateClothes = ({temperature, precipitation, uvIndex}) => {
         addClothingItem(Feet, "boots");
     }
 
-    console.log('yooo')
-    console.log(clothes )
     if (temperature < 40) {
         if ((precipitation > 40) && (uvIndex > 3)) {
             addClothingItem(Accessories, "umbrella",);

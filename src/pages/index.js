@@ -1,41 +1,30 @@
-import React, {useState} from "react"
+import React, { useContext } from "react"
 
 import { useStaticQuery, graphql } from "gatsby"
-import Layout from "../Layout/layout"
-import Weather from '../components/Weather'
-import Header from '../components/Header/Header'
-import Landing from '../components/landing'
-import SEO from "../components/seo"
+import Seo from "../components/Seo"
+import ResultsProvider from './../context/results-context'
+import {ResultsContext} from '../context/results-context'
+import Main from "../containers/Main/Main"
+
 
 const IndexPage = () => {
-  const [address, setAddress] = useState('')
-    const [coords] = useState('')
-
+  const {weather} = useContext(ResultsContext)
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+      query sandboxTitle{
+          site {
+              siteMetadata {
+                  title
+              }
+          }
       }
-    }
   `)
 
   return (
 
-    <Layout>
-      <Header siteTitle={data.site.siteMetadata.title}/>
-      <SEO title="Home" />
-
-      <Landing siteTitle={data.site.siteMetadata.title} setAddress={setAddress} opacity={address? 0: 1} />
-      <Weather 
-        setAddress={setAddress}
-        address={address} 
-        coords={coords} 
-        display={address? '':'hidden'} 
-      />
-
-    </Layout>
+    <ResultsProvider>
+      <Seo title="Home" />
+      <Main siteTitle={data.site.siteMetadata.title}/>
+    </ResultsProvider>
   )
 }
 export default IndexPage

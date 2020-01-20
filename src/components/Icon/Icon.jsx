@@ -6,7 +6,7 @@ import styles from './icon.module.scss'
 const Icon = (props) => {
     const data = useStaticQuery(graphql`
         query IconQuery {
-            cloudySunshine: file(relativePath : { eq: "weather/clouded_sunshine.PNG"}) {
+            clear_day: file(relativePath : { eq: "weather/clear-day.PNG"}) {
                 relativePath
                 childImageSharp {
                     fluid {
@@ -14,7 +14,23 @@ const Icon = (props) => {
                     }
                 }
             }
-            sunshine: file(relativePath : { eq: "weather/sunny.PNG"}) {
+            clear_night: file(relativePath : { eq: "weather/clear-night.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            partly_cloudy_night: file(relativePath : { eq: "weather/partly-cloudy-night.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            partly_cloudy_day: file(relativePath : { eq: "weather/partly-cloudy-day.PNG"}) {
                 relativePath
                 childImageSharp {
                     fluid {
@@ -31,6 +47,38 @@ const Icon = (props) => {
                 }
             }
             cloudy: file(relativePath : { eq: "weather/cloudy.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            sleet: file(relativePath : { eq: "weather/sleet.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            snow: file(relativePath : { eq: "weather/snow.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            wind: file(relativePath : { eq: "weather/wind.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            fog: file(relativePath : { eq: "weather/fog.PNG"}) {
                 relativePath
                 childImageSharp {
                     fluid {
@@ -158,10 +206,49 @@ const Icon = (props) => {
                     }
                 }
             }
+            accessories: file(relativePath : { eq: "body/accessories.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            head: file(relativePath : { eq: "body/head.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            torso: file(relativePath : { eq: "body/torso.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            legs: file(relativePath : { eq: "body/legs.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
+            feet: file(relativePath : { eq: "body/feet.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
         }
 
     `)
-    console.log(props)
 
         let iconStyles = [styles.Icon]
 
@@ -192,7 +279,7 @@ const Icon = (props) => {
             <Img
               className={styles.Image}
               fluid={data['cloudy'].childImageSharp.fluid}
-              alt={""}/>
+              alt={"Image not Found"}/>
 
           }
           <span className={styles.Description}> {props.name} </span>

@@ -1,13 +1,17 @@
 const axios =  require('axios');
 
 var geoCodeAddress = (address) => {
-  const encodedAddress = encodeURIComponent(address);
+  if (address.gps) {
+    address = address.latitude + ',' + address.longitude
+  }else {
+   address = encodeURIComponent(address);
+  }
 
   return axios({
     url: `https://maps.googleapis.com/maps/api/geocode/json`,
     params: {
       key: `AIzaSyCATKk5XrFjpxPNmvPdN5pm20UMTlFg-DE`,
-      address: encodedAddress
+      address: address
     }
   })
   .then(body => {
@@ -18,10 +22,10 @@ var geoCodeAddress = (address) => {
         longitude: body.data.results[0].geometry.location.lng
       };
     }
-    return "No Results";
+    throw "No Results";
   })
   .catch(() => {
-      return ("Unable to connect to Google servers.");
+      throw ("Unable to connect to Google servers.");
   });
 
 };
@@ -43,10 +47,10 @@ var geoCodeAddressFromLatLong = (lat, long) => {
           longitude: body.data.results[0].geometry.location.lng
         };
       }
-      return "No Results";
+      throw "No Results";
     })
     .catch(() => {
-      return ("Unable to connect to Google servers.");
+      throw ("Unable to connect to Google servers.");
     });
 
 }

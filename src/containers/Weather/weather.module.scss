@@ -29,12 +29,17 @@
 
 
     .Details {
-      padding:  2rem;
+      padding: 0 2rem 2rem;
       font-weight: bold;
 
-      & * {
+      p {
         margin-top: 0.5rem ;
+
+        &:nth-child(1) {
+          margin-top: 0;
+        }
       }
+
 
     }
 

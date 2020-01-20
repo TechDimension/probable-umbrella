@@ -7,14 +7,7 @@ const Weather= () => {
   const {weather} = useContext(ResultsContext)
 
   if (weather) {
-    switch(weather.icon) {
-      case 'clear-day' : {
-        weather.icon = 'sunshine'; break
-      }
-      case 'partly-cloudy-day' : {
-        weather.icon = 'cloudy'; break
-      }
-    }
+    weather.icon = weather.icon.split('-').join('_');
   }
 
   return (
@@ -27,17 +20,18 @@ const Weather= () => {
       <div className={styles.Information}>
           <Icon
             src={weather.icon}
-            name={weather.icon}
+            name={weather.nowSummary}
             weather
           >
           </Icon>
 
         <div className={styles.Details}>
           <p> Day: {weather.day} </p>
-          <p> Temperature: {weather.temperature} </p>
+          <p> Temperature: {weather.temperature}&#8451; </p>
           <p> Precipitation: {weather.precipitation}% </p>
-          <p> Feels like: {weather.apparentTemperature} </p>
-          <p> Description: {weather.icon} </p>
+          <p> Humidity: {weather.humidity}% </p>
+          <p> Feels like: {weather.apparentTemperature}&#8451; </p>
+          <p> Description: {weather.hourlySummary} </p>
         </div>
 
         </div>

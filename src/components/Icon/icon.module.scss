@@ -5,21 +5,30 @@
   padding: 0.5rem;
   box-sizing: border-box;
   color: white;
+  font-family: "Fira Code Medium", sans-serif;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   &.Body {
-    background-color: rgba(124, 150, 107, 0.69);
-    color:white;
+    background-color: rgba(255, 204, 0, 0.71);
+    font-weight: 700;
+    font-size: 0.9rem;
+    //padding: 1rem;
+    .Description {
+      color: black;
+      border-top: 4px solid rgb(249, 255, 249);
+      font-weight: 700;
+    }
   }
   &.Weather{
     margin: 0 auto;
-    padding: 3rem;
+    padding: 2rem;
+    width: 60%;
     color:white;
     .Description {
-      border-top: 3px solid rgba(202, 197, 78, 0.72);
+      border-top: 3px solid #fc0;
       font-weight: 700;
     }
     .Image{

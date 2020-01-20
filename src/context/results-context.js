@@ -19,22 +19,15 @@ export default props => {
     handleClothes(newWeather)
   }
   const handleAddress = address => {
-    if (address.gps) {
-      return geoCodeAddressFromLatLong(address.latitude, address.longitude).then(
-        addressCode => {
-          console.log('address code ')
-          console.log(addressCode)
-          setAddress(addressCode)
-          return addressCode
-        }
-      )
-    } else {
-      return geoCodeAddress(address).then(geocode => {
+    return geoCodeAddress(address).then(geocode => {
         console.log(geocode)
         setAddress(geocode);
         return geocode
-      }).catch(() => console.log('catching get address'));
-    }
+      }).catch((error) => {
+        console.log(error)
+        setResultsLive(false)
+    } );
+
 
   }
 
@@ -45,9 +38,10 @@ export default props => {
         console.log(weather)
         setWeather(weather)
         return weather
-        }).catch(() => {
-          console.log('catching handle weather')
-      });
+        }).catch((error) =>  {
+          console.log(error)
+          setResultsLive(false)
+      } );
     }
   }
 

@@ -1,32 +1,34 @@
 const axios = require('axios');
 
-var getWeather = (lat, long) => {
+const getWeather = (lat, long) => {
   return axios({
     method: 'get',
     url: `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/3f166f1086c5a25d93bf69d2e5cb12ac/${lat},${long}`
 
   })
   .then(({data}) => {
-    var today = data.daily.data[0];
-    var current = data.currently;
-    var date = new Date(current.time * 1000);
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    console.log(data)
+    const today = data.daily.data[0];
+    const current = data.currently;
+    const date = new Date(current.time * 1000);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     return {
+      time: `${date.getHours()}:${date.getMinutes()}`,
       day: `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
-      temperatureHigh: toCelsius(today.temperatureHigh),
-      temperatureLow: toCelsius(today.temperatureLow),
       temperature: toCelsius(current.temperature),
-      apparentTemperature: toCelsius(today.temperatureHigh),
-      re: toCelsius(today.apparentTemperatureHigh),
-      precipitation: parseFloat((today.precipProbability * 100).toFixed(1)),
+      apparentTemperature: toCelsius(current.apparentTemperature),
+      precipitation: parseFloat((current.precipProbability * 100).toFixed(1)),
       uvIndex: today.uvIndex,
-      icon: today.icon
+      icon: current.icon,
+      nowSummary: current.summary,
+      hourlySummary: data.hourly.summary,
+      humidity: current.humidity
     };
   })
   .catch(() => {
-      return "Unable to fetch weather.";
+      throw "Unable to fetch weather.";
   });
 }
 
