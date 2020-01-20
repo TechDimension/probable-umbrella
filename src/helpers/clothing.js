@@ -1,4 +1,4 @@
-const clothes = {}
+let clothes = {}
 
 const addClothingItem = (body, item) => {
     if (!clothes[body]){
@@ -14,24 +14,25 @@ const Legs = 'legs'
 const Feet = 'feet'
 
 const calculateClothes = ({temperature, precipitation, uvIndex}) => {
+    clothes = {}
 
     console.log(temperature)
     console.log(precipitation)
     console.log(uvIndex)
 
     if (temperature >= 40) {
-        addClothingItem(Torso, "vest-top");
+        addClothingItem(Torso, "vestTop");
         addClothingItem(Legs, "shorts",);
-        addClothingItem(Feet, "flip-flops",);
+        addClothingItem(Feet, "flipFlops",);
 
     }else if (temperature >= 30) {
-        addClothingItem(Torso, "vest-top");
+        addClothingItem(Torso, "vestTop");
         addClothingItem(Legs, "shorts");
-        addClothingItem(Feet,"flip-flops");
+        addClothingItem(Feet,"flipFlops");
     }else if (temperature >= 25) {
-        addClothingItem(Torso, "vest-top");
+        addClothingItem(Torso, "vestTop");
         addClothingItem(Legs, "shorts");
-        addClothingItem(Feet,"flip-flops");
+        addClothingItem(Feet,"flipFlops");
     }else if (temperature >= 20) {
         addClothingItem(Torso, "tShirt");
         addClothingItem(Legs, "jeans");
@@ -83,7 +84,7 @@ const calculateClothes = ({temperature, precipitation, uvIndex}) => {
         addClothingItem(Torso, "jacket");
         addClothingItem(Torso, "hoodie");
         addClothingItem(Torso, "tShirt");
-        addClothingItem(Torso, "vest-top");
+        addClothingItem(Torso, "vestTop");
         addClothingItem(Legs, "jeans");
         addClothingItem(Feet, "boots");
     }

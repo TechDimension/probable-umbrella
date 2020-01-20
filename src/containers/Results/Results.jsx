@@ -5,9 +5,6 @@ import Weather from '../Weather/Weather'
 import {ResultsContext} from '../../context/results-context'
 
 import styles from './results.module.scss'
-// import { calculateClothes } from "../../helpers/clothing"
-// import { getWeather } from "../../api/weather"
-// import { geoCodeAddress } from "../../api/geocode"
 
 
 
@@ -33,6 +30,7 @@ const Results = () => {
           <Weather/>
         </div>
       </div>
+
     </div>
   )
 }

@@ -9,15 +9,16 @@ const Weather= () => {
   if (weather) {
     switch(weather.icon) {
       case 'clear-day' : {
-        return weather.icon = 'sunshine'
+        weather.icon = 'sunshine'; break
       }
       case 'partly-cloudy-day' : {
-        return weather.icon = 'cloudy'
+        weather.icon = 'cloudy'; break
       }
     }
   }
 
   return (
+
     <div className={styles.Weather}>
       <div className={styles.Header}>
         <h2> Weather </h2>

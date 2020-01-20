@@ -9,7 +9,7 @@ const Icon = (props) => {
             cloudySunshine: file(relativePath : { eq: "weather/clouded_sunshine.PNG"}) {
                 relativePath
                 childImageSharp {
-                    fluid (maxWidth: 400, maxHeight: 250) {
+                    fluid {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -17,7 +17,7 @@ const Icon = (props) => {
             sunshine: file(relativePath : { eq: "weather/sunny.PNG"}) {
                 relativePath
                 childImageSharp {
-                    fluid (maxWidth: 400, maxHeight: 250) {
+                    fluid {
                         ...GatsbyImageSharpFluid
                     }
                 }
@@ -102,6 +102,14 @@ const Icon = (props) => {
                     }
                 }
             }
+            shorts: file(relativePath : { eq: "clothes/shorts.PNG"}) {
+                relativePath
+                childImageSharp {
+                    fluid {
+                        ...GatsbyImageSharpFluid
+                    }
+                }
+            }
             jeans: file(relativePath : { eq: "clothes/jeans.PNG"}) {
                 relativePath
                 childImageSharp {
@@ -169,18 +177,24 @@ const Icon = (props) => {
         }
 
         iconStyles = iconStyles.join(' ')
-  console.log(iconStyles)
     return  (
 
 
       <div
-
         className={iconStyles}
       >
-          <Img
-            className={styles.Image}
-            fluid={data[props.src].childImageSharp.fluid}
-            alt={""}/>
+
+          {data[props.src] ?
+            <Img
+              className={styles.Image}
+              fluid={data[props.src].childImageSharp.fluid}
+              alt={""}/>:
+            <Img
+              className={styles.Image}
+              fluid={data['cloudy'].childImageSharp.fluid}
+              alt={""}/>
+
+          }
           <span className={styles.Description}> {props.name} </span>
           {props.children}
       </div>

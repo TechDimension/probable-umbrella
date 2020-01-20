@@ -84,6 +84,7 @@ const Weather = (props) => {
                             { weather? weather.temperature: null } Degrees
                         </div>
 
+
                         { weather && weather.icon?
                         <Img fluid={data[weather.icon].childImageSharp.fluid}
                              className="weather-icon"

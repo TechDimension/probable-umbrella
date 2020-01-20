@@ -1,6 +1,4 @@
 .Icon {
-  width:100%;
-  height: auto;
   //background-color: white;
   border-radius: 10px;
   text-align: center;
@@ -17,9 +15,15 @@
     color:white;
   }
   &.Weather{
+    margin: 0 auto;
+    padding: 3rem;
     color:white;
     .Description {
+      border-top: 3px solid rgba(202, 197, 78, 0.72);
       font-weight: 700;
+    }
+    .Image{
+      margin-bottom: 0.5rem;
     }
   }
   &.Clothing{
