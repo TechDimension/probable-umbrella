@@ -4,10 +4,10 @@ import { getWeather } from '../api/weather';
 import { calculateClothes } from "../helpers/clothing"
 
 export const ResultsContext = React.createContext({
-  results: {}
 });
 
 export default props => {
+  const [resultsLive, setResultsLive] = useState(false)
   const [weather, setWeather] = useState({})
   const [address, setAddress] = useState({})
   const [clothes, setClothes] = useState({})
@@ -29,7 +29,7 @@ export default props => {
         }
       )
     } else {
-      geoCodeAddress(address).then(geocode => {
+      return geoCodeAddress(address).then(geocode => {
         console.log(geocode)
         setAddress(geocode);
         return geocode
@@ -58,11 +58,12 @@ export default props => {
       console.log('clothes')
       console.log(newClothes)
       setClothes(newClothes)
+      setResultsLive(true)
     }
   }
 
   return (
-    <ResultsContext.Provider value={{weather, address, clothes, handleResult}}>
+    <ResultsContext.Provider value={{weather, address, clothes, handleResult, resultsLive}}>
       {props.children}
     </ResultsContext.Provider>
   );

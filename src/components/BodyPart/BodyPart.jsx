@@ -5,21 +5,27 @@ import styles from './bodypart.module.scss'
 import Icon from "../Icon/Icon"
 
 
-const BodyPart = (propsi) => (
-  <div className={styles.BodyPart}>
-    {console.log(propsi)}
-    <Icon
-      src={propsi.icon}
-      name={propsi.name}>
-    </Icon>
+const BodyPart = (props) => (
+  <div className={styles.BodyPart} >
+    <div className={styles.Icon}>
 
-    {propsi.clothingItems.map(clothingItem => (
-        <div className={styles.ClothingItem}>
+    <Icon
+      body
+      src={props.icon}
+      name={props.name}>
+    </Icon>
+    </div>
+
+    {props.clothingItems.map((clothingItem, index) => (
+        <div className={styles.ClothingItem} key={index}>
+          <div className={styles.Icon}>
           <Icon
-            src={clothingItem.icon}
-            name={clothingItem.name}
+            clothing
+            src={clothingItem}
+            name={clothingItem}
             >
           </Icon>
+          </div>
         </div>
       )
     )}
@@ -30,24 +36,17 @@ const BodyPart = (propsi) => (
 BodyPart.propTypes = {
   name: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  clothingItems: PropTypes.arrayOf(PropTypes.shape(
-    {
-      icon: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired
-    }
-  )).isRequired
+  clothingItems: PropTypes.arrayOf(
+    PropTypes.string
+  ).isRequired,
+  keyi: PropTypes.string
 }
 
 BodyPart.defaultProps = {
   name: 'Body Part',
   icon: 'tShirt',
-  clothingItems: [{
-   name: 'Item 1',
-    icon: 'tShirt'
-  }, {
-    name: "Item 2",
-    icon: 'tShirt'
-  }]
+  clothingItems: ['Item1, Item2']
+
 }
 
 

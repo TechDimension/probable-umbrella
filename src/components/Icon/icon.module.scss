@@ -1,23 +1,46 @@
 .Icon {
-  width: 7rem;
-  height: 7rem;
-  background-color: white;
+  width:100%;
+  height: auto;
+  //background-color: white;
   border-radius: 10px;
   text-align: center;
   padding: 0.5rem;
   box-sizing: border-box;
+  color: white;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
 
+  &.Body {
+    background-color: rgba(124, 150, 107, 0.69);
+    color:white;
+  }
+  &.Weather{
+    color:white;
+    .Description {
+      font-weight: 700;
+    }
+  }
+  &.Clothing{
+    background-color: rgba(255, 255, 255, 0.57);
+    color:black;
+  }
+
   .Image{
     margin-bottom: 0.5rem;
+
+
+    img {
+      width: auto;
+      height:auto;
+    }
   }
 
 
   .Description {
     border-top: 3px solid #00ca00;
+    font-weight: 500;
   }
 
 }

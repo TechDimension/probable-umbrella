@@ -12,41 +12,22 @@ import styles from './results.module.scss'
 
 
 const Results = () => {
-
-
-  const {weather, handleWeather, address, handleAddress} = useContext(ResultsContext)
-  const {handleClothes} = useContext(ResultsContext)
-
-
-  const {temperature, precipitation, uvIndex} = weather
-
-  const [ clothingState, setClothingState] = useState(null);
-
+  const {address} = useContext(ResultsContext)
 
   return (
     <div className={styles.Results}>
       <div className={styles.Top}>
         <div className={styles.Header}>
           <h1>
-            Basingstoke
+            {address.address}
           </h1>
         </div>
-        <a
-          className={styles.Again}
-          href={'/'}
-        >
-          Again
-
-        </a>
       </div>
 
       <div className={styles.Bottom}>
 
         <div className={styles.Left}>
-          <RecommendedClothing clothes={[{
-            name:'t-shirt',
-            icon: 'tShirt'
-          }]}/>
+          <RecommendedClothing />
         </div>
         <div className={styles.Right}>
           <Weather/>
